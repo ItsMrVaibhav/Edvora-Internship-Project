@@ -1,0 +1,49 @@
+.ride {
+    position: relative;
+    height: 200px;
+    background-color: #171717;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.ride-map {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.ride-details {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ride-details-one {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 25px;
+}
+
+.ride-details-two {
+    height: 100%;
+    display: flex;
+}
+
+.ride-detail-one {
+    color: #CFCFCF;
+}
+
+.ride-detail-two {
+    color: #FFFFFF;
+    margin-left: 25px;
+}
+
+.ride-detail-one span {
+    color: #FFFFFF;
+}

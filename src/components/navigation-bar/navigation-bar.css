@@ -1,0 +1,43 @@
+.navigation-bar {
+    background-color: #101010;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px;
+}
+
+.title {
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-avatar-space {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 15px;
+}
+
+.user-avatar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.user-name {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+}

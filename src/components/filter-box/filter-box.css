@@ -1,0 +1,30 @@
+.filter-box {
+    z-index: 100;
+    position: absolute;
+    background-color: #131313;
+    width: 200px;
+    top: calc(100% + 15px);
+    right: 0px;
+    padding: 20px;
+    border: 3px solid #0D0D0D;
+}
+
+.filter-box p {
+    font-size: 16px;
+    color: #A5A5A5;
+    border-bottom: 2px solid #A5A5A5;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.filter-dropdown {
+    background-color: #232323;
+    color: #FFFFFF;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+}
