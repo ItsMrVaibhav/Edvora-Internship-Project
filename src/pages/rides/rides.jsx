@@ -2,10 +2,6 @@ import React from "react";
 import RideCard from "../../components/ride-card/ride-card";
 
 class Rides extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="rides">

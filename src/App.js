@@ -84,7 +84,7 @@ class App extends React.Component {
       }
     }
 
-    if (index == 0) {
+    if (index === 0) {
       return index;
     } else {
       return Math.abs(array[index - 1] - target) < Math.abs(array[index] - target)

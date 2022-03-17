@@ -1,6 +1,5 @@
 import "./ride-card.css";
 import React from 'react';
-import dummyMap from "./map.jpg";
 
 const RideCard = ({ride}) => {
   return (
