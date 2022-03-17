@@ -5,16 +5,14 @@ import Button from "../button/button";
 class NavigationBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: this.props.title,
-    }
+    this.state = {}
   }
 
   render() {
     const user = this.props.user;
     return (
       <div className="navigation-bar">
-        <p className="title">{this.state.title}</p>
+        <p className="title">{this.props.title}</p>
         {
           user
           ? <div className="user">

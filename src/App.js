@@ -13,11 +13,53 @@ class App extends React.Component {
       user: null,
       nearest: [],
       upcomingRides: [],
-      pastRides: []
+      pastRides: [],
+      states: [],
+      cities: [],
+      uCount: 0,
+      pCount: 0
     }
     this.getUser = this.getUser.bind(this);
     this.getRides = this.getRides.bind(this);
     this.nearest = this.nearest.bind(this);
+    this.onFilterChange = this.onFilterChange.bind(this);
+  }
+
+  onFilterChange(state, city) {
+    const valid = (rs, rc) => {
+      return (rs === state && rc === city) || (state === "State" && rc === city) || (state === rs && city === "City") || (state === "State" && city === "City");
+    }
+
+    const { nearest, upcomingRides, pastRides } = this.state;
+    let uCount = 0, pCount = 0;
+
+    for (let i = 0; i < nearest.length; i++) {
+      if (valid(nearest[i].state, nearest[i].city)) {
+        nearest[i].hidden = false;
+      } else {
+        nearest[i].hidden = true;
+      }
+    }
+
+    for (let i = 0; i < upcomingRides.length; i++) {
+      if (valid(upcomingRides[i].state, upcomingRides[i].city)) {
+        upcomingRides[i].hidden = false;
+        uCount++;
+      } else {
+        upcomingRides[i].hidden = true;
+      }
+    }
+
+    for (let i = 0; i < pastRides.length; i++) {
+      if (valid(pastRides[i].state, pastRides[i].city)) {
+        pastRides[i].hidden = false;
+        pCount++;
+      } else {
+        pastRides[i].hidden = true;
+      }
+    }
+  
+    this.setState({ nearest, upcomingRides, pastRides, uCount, pCount });
   }
 
   nearest(array, target) {
@@ -69,19 +111,21 @@ class App extends React.Component {
       const code = user.station_code;
       const currentDate = new Date();
       const upcomingRides = [], pastRides = [], nearest = [];
-      console.log("Code:", code)
+      const states = new Set(), cities = new Set();
 
       for (let i = 0; i < rides.length; i++) {
         const array = rides[i].station_path;
         const index = this.nearest(array, code)
         const tempDate = new Date(rides[i].date);
         const distance = Math.abs(code - array[index]);
-        nearest.push({...rides[i], distance, nearestIndex: index, nearestStation: array[index]});
+        states.add(rides[i].state);
+        cities.add(rides[i].city);
+        nearest.push({...rides[i], distance, hidden: false, nearestIndex: index, nearestStation: array[index]});
 
         if (currentDate - tempDate <= 0) { // Future date
-          upcomingRides.push({...rides[i], distance, nearestIndex: index, nearestStation: array[index]});
+          upcomingRides.push({...rides[i], distance, hidden: false, nearestIndex: index, nearestStation: array[index]});
         } else {
-          pastRides.push({...rides[i], distance, nearestIndex: index, nearestStation: array[index]});
+          pastRides.push({...rides[i], distance, hidden: false, nearestIndex: index, nearestStation: array[index]});
         }
       }
 
@@ -92,7 +136,11 @@ class App extends React.Component {
       this.setState({
         nearest,
         upcomingRides,
-        pastRides
+        pastRides,
+        uCount: upcomingRides.length,
+        pCount: pastRides.length,
+        states: [...states],
+        cities: [...cities]
       });
     });
   }
@@ -106,10 +154,10 @@ class App extends React.Component {
           <div className="panel">
             <div className="panel-links">
               <Link className={`panel-link ${location.pathname === "/" ? "panel-link-active" : ""}`} to="/">Nearest Rides</Link>
-              <Link className={`panel-link ${location.pathname === "/upcoming-rides" ? "panel-link-active" : ""}`} to="/upcoming-rides">Upcoming Rides ({this.state.upcomingRides.length})</Link>
-              <Link className={`panel-link ${location.pathname === "/past-rides" ? "panel-link-active" : ""}`} to="/past-rides">Past Rides ({this.state.pastRides.length})</Link>
+              <Link className={`panel-link ${location.pathname === "/upcoming-rides" ? "panel-link-active" : ""}`} to="/upcoming-rides">Upcoming Rides ({this.state.uCount})</Link>
+              <Link className={`panel-link ${location.pathname === "/past-rides" ? "panel-link-active" : ""}`} to="/past-rides">Past Rides ({this.state.pCount})</Link>
             </div>
-            <Filter />
+            <Filter states={this.state.states} cities={this.state.cities} onFilterChange={this.onFilterChange} />
           </div>
           <Switch>
             <Route exact path="/">

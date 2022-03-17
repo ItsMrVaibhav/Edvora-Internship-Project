@@ -11,7 +11,7 @@ class Rides extends React.Component {
       <div className="rides">
         {
           this.props.rides.map((ride, index) => {
-            return <RideCard ride={ride} key={index} />;
+            return !ride.hidden ? <RideCard ride={ride} key={index} /> : undefined;
           })
         }
       </div>

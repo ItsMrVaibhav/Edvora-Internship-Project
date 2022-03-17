@@ -4,17 +4,15 @@ import { useState } from "react";
 import filterImage from "./filter.png";
 import FilterBox from "../filter-box/filter-box";
 
-const Filter = ({states, cities}) => {
-  const [toggle, setToggle] = useState(true);
+const Filter = ({ states, cities, onFilterChange }) => {
+  const [show, setShow] = useState(false);
   return (
     <div className="filter">
       <img src={filterImage} alt="Filter" className="filter-icon" />
-      <p className="filter-title" onClick={() => setToggle(!toggle)}>Filter</p>
-      {
-        toggle
-        ? <FilterBox />
-        : undefined
-      }
+      <p className="filter-title" onClick={() => setShow(!show)}>Filter</p>
+      <div className={`${show ? "" : "hide"}`}>
+        <FilterBox states={states} cities={cities} onFilterChange={onFilterChange} />
+      </div>
     </div>
   );
 }
