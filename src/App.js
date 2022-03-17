@@ -161,13 +161,13 @@ class App extends React.Component {
           </div>
           <Switch>
             <Route exact path="/">
-              <Rides rides={this.state.nearest} />
+              <Rides rides={this.state.nearest} count={this.state.uCount + this.state.pCount} />
             </Route>
             <Route exact path="/upcoming-rides">
-              <Rides rides={this.state.upcomingRides} />
+              <Rides rides={this.state.upcomingRides} count={this.state.uCount} />
             </Route>
             <Route exact path="/past-rides">
-              <Rides rides={this.state.pastRides} />
+              <Rides rides={this.state.pastRides} count={this.state.pCount} />
             </Route>
           </Switch>
         </div>
