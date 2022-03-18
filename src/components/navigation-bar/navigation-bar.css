@@ -13,6 +13,7 @@
 }
 
 .user {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,6 +26,7 @@
     border-radius: 50%;
     overflow: hidden;
     margin-left: 15px;
+    cursor: pointer;
 }
 
 .user-avatar {
@@ -40,4 +42,34 @@
     color: #FFFFFF;
     font-size: 20px;
     font-weight: bold;
+}
+
+.dropdown-user-details {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0px;
+    border: 1px solid #0D0D0D;
+    display: none;
+}
+
+.dropdown-user-detail:hover {
+    background-color: #2e2e2e;
+}
+
+.dropdown-user-detail {
+    color: #FFFFFF;
+    padding: 10px;
+    background-color: #131313;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+@media (max-width: 750px) {
+    .user-name {
+        display: none;
+    }
+
+    .dropdown-user-details {
+        display: flex;
+    }
 }

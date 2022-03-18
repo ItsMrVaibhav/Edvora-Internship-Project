@@ -14,8 +14,8 @@ const RideCard = ({ride}) => {
           <p className="ride-detail-one">Distance - <span>{ride.distance}</span></p>
         </div>
         <div className="ride-details-two">
-          <p className="ride-detail-two">{ride.city}</p>
-          <p className="ride-detail-two">{ride.state}</p>
+          <p className="ride-detail-two" title="City">{ride.city}</p>
+          <p className="ride-detail-two" title="State">{ride.state}</p>
         </div>
       </div>
     </div>

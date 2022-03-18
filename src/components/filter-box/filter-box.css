@@ -1,11 +1,11 @@
 .filter-box {
     z-index: 100;
     position: absolute;
-    background-color: #131313;
     width: 200px;
     top: calc(100% + 15px);
     right: 0px;
     padding: 20px;
+    background-color: #131313;
     border: 3px solid #0D0D0D;
 }
 

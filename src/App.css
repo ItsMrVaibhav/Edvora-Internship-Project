@@ -30,10 +30,32 @@ body {
     color: #D0CBCB;
     text-decoration: none;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .panel-link-active {
     color: #FFFFFF;
     border-bottom: 2px solid #FFFFFF;
     padding-bottom: 5px;
+}
+
+@media (max-width: 750px) {
+    .panel {
+        flex-direction: column;
+        margin-bottom: 25px;
+        align-items: flex-end;
+    }
+
+    .panel-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .panel-links {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .panel-link:last-child {
+        margin-right: 0px;
+    }
 }
